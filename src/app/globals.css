@@ -1,0 +1,126 @@
+@import "tailwindcss";
+/* agar selalu dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    --background: #000000;
+    --foreground: #ffffff;
+    --primary: #00aaad;
+    --secondary: #20a879;
+    --bgnew: #00090a;
+
+    --font-sans: "Montserrat", sans-serif;
+    /* Typography scale (Golden Ratio from 12px) */
+    --font-size-xs: 12px; /* regular */
+    --font-size-sm: 19px; /* 12 * 1.618 */
+    --font-size-md: 30px; /* 19 * 1.618 */
+    --font-size-lg: 49px; /* 30 * 1.618 */
+    --font-size-xl: 79px; /* 49 * 1.618 */
+    --font-size-2xl: 128px; /* 79 * 1.618 */
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-secondary: var(--secondary);
+    --color-bgnew: var(--bgnew);
+    --font-sans: "Montserrat", sans-serif;
+
+    /* Font sizes */
+    --text-xs: var(--font-size-xs);
+    --text-sm: var(--font-size-sm);
+    --text-md: var(--font-size-md);
+    --text-lg: var(--font-size-lg);
+    --text-xl: var(--font-size-xl);
+    --text-2xl: var(--font-size-2xl);
+
+    /* Break Points */
+    --breakpoint-3xl: 1900px;
+
+    --animate-aurora: aurora 60s linear infinite;
+    @keyframes aurora {
+        from {
+            background-position: 50% 50%, 50% 50%;
+        }
+        to {
+            background-position: 350% 50%, 350% 50%;
+        }
+    }
+
+    --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+    @keyframes spotlight {
+        0% {
+            opacity: 0;
+            transform: translate(-72%, -62%) scale(0.5);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(-50%, -40%) scale(1);
+        }
+    }
+
+    --animate-scroll-x-infinite: scroll var(--animation-duration, 40s)
+        var(--animation-direction, forwards) linear infinite;
+
+    @keyframes scroll-x-inf {
+        to {
+            transform: translate(calc(-50% - 0.5rem));
+        }
+    }
+}
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    } /* geser separuh karena kita duplicate array */
+}
+
+.animate-marquee {
+    display: flex;
+    width: 100%;
+    animation: marquee 20s linear infinite;
+}
+
+body {
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    overflow-x: hidden !important;
+    width: 100% !important;
+}
+
+.container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Scrollbar minimalis */
+::-webkit-scrollbar {
+    width: 6px; /* Lebar scrollbar */
+    height: 2px; /* Tinggi horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Track transparan biar minimalis */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3); /* Hitam dengan opacity rendah */
+    border-radius: 10px; /* Membulat */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Lebih jelas saat hover */
+}
+
+/* Untuk Firefox */
+* {
+    scrollbar-width: thin; /* Tipis */
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
